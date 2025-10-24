@@ -16,7 +16,28 @@ const geistMono = Geist_Mono({
 });
 
 const cairo = localFont({
-  src: '../public/fonts/cairo-variableFont_slnt,wght.ttf',
+  src: [
+    {
+      path: '../public/fonts/static/Cairo-Regular.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/static/Cairo-Bold.ttf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/static/Cairo-Medium.ttf',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/static/Cairo-SemiBold.ttf',
+      weight: '600',
+      style: 'normal',
+    },
+  ],
   variable: '--font-cairo',
   display: 'swap',
   preload: true,
