@@ -27,7 +27,7 @@ export default function CreateAccountPage() {
   const [formData, setFormData] = useState({
     fullName: "",
     phoneNumber: "",
-    parentPhoneNumber: "",
+    email: "",
     password: "",
     confirmPassword: "",
   });
@@ -69,7 +69,7 @@ export default function CreateAccountPage() {
         setFormData({
           fullName: "",
           phoneNumber: "",
-          parentPhoneNumber: "",
+          email: "",
           password: "",
           confirmPassword: "",
         });
@@ -80,10 +80,10 @@ export default function CreateAccountPage() {
         const errorMessage = axiosError.response.data as string;
         if (errorMessage.includes("Phone number already exists")) {
           toast.error("رقم الهاتف مسجل مسبقاً");
-        } else if (errorMessage.includes("Parent phone number already exists")) {
-          toast.error("رقم هاتف الوالد مسجل مسبقاً");
-        } else if (errorMessage.includes("Phone number cannot be the same as parent phone number")) {
-          toast.error("رقم الهاتف لا يمكن أن يكون نفس رقم هاتف الوالد");
+        } else if (errorMessage.includes("Email already exists")) {
+          toast.error("البريد الإلكتروني مسجل مسبقاً");
+        } else if (errorMessage.includes("Invalid email format")) {
+          toast.error("صيغة البريد الإلكتروني غير صحيحة");
         } else if (errorMessage.includes("Passwords do not match")) {
           toast.error("كلمات المرور غير متطابقة");
         } else {
@@ -99,12 +99,12 @@ export default function CreateAccountPage() {
 
   const resetForm = () => {
     setFormData({
-      fullName: "",
-      phoneNumber: "",
-      parentPhoneNumber: "",
-      password: "",
-      confirmPassword: "",
-    });
+    fullName: "",
+    phoneNumber: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
     setCreatedUser(null);
   };
 
@@ -195,14 +195,14 @@ export default function CreateAccountPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="parentPhoneNumber">رقم هاتف الوالد *</Label>
+                  <Label htmlFor="email">البريد الإلكتروني *</Label>
                   <Input
-                    id="parentPhoneNumber"
-                    name="parentPhoneNumber"
-                    type="tel"
-                    value={formData.parentPhoneNumber}
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
                     onChange={handleInputChange}
-                    placeholder="أدخل رقم هاتف الوالد"
+                    placeholder="email@example.com"
                     required
                   />
                 </div>
@@ -285,7 +285,7 @@ export default function CreateAccountPage() {
                   <Button
                     type="submit"
                     disabled={isLoading || !passwordChecks.isValid}
-                    className="flex-1 bg-[#27c08d] hover:bg-[#27c08d]/90 text-white"
+                    className="flex-1 bg-[#8B0620] hover:bg-[#8B0620]/90 text-white"
                   >
                     {isLoading ? "جاري الإنشاء..." : "إنشاء الحساب"}
                   </Button>

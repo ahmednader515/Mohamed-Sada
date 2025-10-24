@@ -105,33 +105,33 @@ const BalancesPage = () => {
             </div>
 
             {/* Students Table */}
-            {studentUsers.length > 0 && (
-                <Card>
-                    <CardHeader>
-                        <CardTitle>قائمة الطلاب</CardTitle>
-                        <div className="flex items-center space-x-2">
-                            <Search className="h-4 w-4 text-muted-foreground" />
-                            <Input
-                                placeholder="البحث بالاسم أو رقم الهاتف..."
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                className="max-w-sm"
-                            />
-                        </div>
-                    </CardHeader>
-                    <CardContent>
-                        <Table>
-                            <TableHeader>
-                                <TableRow>
-                                    <TableHead className="text-right">الاسم</TableHead>
-                                    <TableHead className="text-right">رقم الهاتف</TableHead>
-                                    <TableHead className="text-right">الدور</TableHead>
-                                    <TableHead className="text-right">الرصيد الحالي</TableHead>
-                                    <TableHead className="text-right">الإجراءات</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                {studentUsers.map((user) => (
+            <Card>
+                <CardHeader>
+                    <CardTitle>قائمة الطلاب</CardTitle>
+                    <div className="flex items-center space-x-2">
+                        <Search className="h-4 w-4 text-muted-foreground" />
+                        <Input
+                            placeholder="البحث بالاسم أو رقم الهاتف..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="max-w-sm"
+                        />
+                    </div>
+                </CardHeader>
+                <CardContent>
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead className="text-right">الاسم</TableHead>
+                                <TableHead className="text-right">رقم الهاتف</TableHead>
+                                <TableHead className="text-right">الدور</TableHead>
+                                <TableHead className="text-right">الرصيد الحالي</TableHead>
+                                <TableHead className="text-right">الإجراءات</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {studentUsers.length > 0 ? (
+                                studentUsers.map((user) => (
                                     <TableRow key={user.id}>
                                         <TableCell className="font-medium">
                                             {user.fullName}
@@ -163,12 +163,18 @@ const BalancesPage = () => {
                                             </Button>
                                         </TableCell>
                                     </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </CardContent>
-                </Card>
-            )}
+                                ))
+                            ) : (
+                                <TableRow>
+                                    <TableCell colSpan={5} className="h-24 text-center">
+                                        لا يوجد طلاب مسجلين في النظام
+                                    </TableCell>
+                                </TableRow>
+                            )}
+                        </TableBody>
+                    </Table>
+                </CardContent>
+            </Card>
             {/* Single lightweight dialog rendered once */}
             <Dialog
                 open={isDialogOpen}

@@ -104,8 +104,8 @@ export default function ServicesCarousel({ services, title }: ServicesCarouselPr
             }}
             className="pb-16"
             style={{
-              '--swiper-navigation-color': '#27c08d',
-              '--swiper-pagination-color': '#27c08d',
+              '--swiper-navigation-color': '#8B0620',
+              '--swiper-pagination-color': '#8B0620',
             } as React.CSSProperties}
           >
         {services.map((service, index) => (

@@ -25,8 +25,8 @@ export const RTLProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     if (!mounted) return;
     
-    // Update document direction when isRTL changes
-    document.documentElement.dir = isRTL ? "rtl" : "ltr";
+    // Update document language when isRTL changes
+    // Note: Direction is controlled via CSS to keep scrollbar on the right
     document.documentElement.lang = isRTL ? "ar" : "en";
   }, [isRTL, mounted]);
 

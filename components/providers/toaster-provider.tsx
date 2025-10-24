@@ -3,5 +3,16 @@
 import { Toaster } from 'react-hot-toast';
 
 export const ToastProvider = () => {
-    return <Toaster/>
+    return (
+        <Toaster
+            position="top-left"
+            reverseOrder={false}
+            toastOptions={{
+                style: {
+                    textAlign: 'right',
+                    direction: 'rtl',
+                },
+            }}
+        />
+    )
 }

@@ -137,17 +137,17 @@ const GradesPage = () => {
     });
 
     const getGradeColor = (percentage: number) => {
-        if (percentage >= 90) return "text-green-600";
-        if (percentage >= 80) return "text-green-500";
-        if (percentage >= 70) return "text-green-400";
+        if (percentage >= 90) return "text-[#8B0620]";
+        if (percentage >= 80) return "text-[#A52A2A]";
+        if (percentage >= 70) return "text-[#B22222]";
         if (percentage >= 60) return "text-orange-600";
         return "text-red-600";
     };
 
     const getGradeBadge = (percentage: number) => {
-        if (percentage >= 90) return { variant: "default" as const, className: "bg-green-600 text-white" };
-        if (percentage >= 80) return { variant: "default" as const, className: "bg-green-500 text-white" };
-        if (percentage >= 70) return { variant: "default" as const, className: "bg-green-400 text-white" };
+        if (percentage >= 90) return { variant: "default" as const, className: "bg-[#8B0620] text-white" };
+        if (percentage >= 80) return { variant: "default" as const, className: "bg-[#A52A2A] text-white" };
+        if (percentage >= 70) return { variant: "default" as const, className: "bg-[#B22222] text-white" };
         if (percentage >= 60) return { variant: "default" as const, className: "bg-orange-600 text-white" };
         return { variant: "destructive" as const, className: "" };
     };
@@ -186,7 +186,7 @@ const GradesPage = () => {
                 <Card>
                     <CardContent className="p-6">
                         <div className="flex items-center space-x-2">
-                            <Award className="h-8 w-8 text-green-600" />
+                            <Award className="h-8 w-8 text-[#8B0620]" />
                             <div>
                                 <p className="text-sm font-medium text-muted-foreground">متوسط الدرجات</p>
                                 <p className="text-2xl font-bold">
@@ -375,7 +375,7 @@ const GradesPage = () => {
                                             <div className="text-sm text-muted-foreground">النسبة المئوية</div>
                                         </div>
                                         <div className="text-center">
-                                            <div className="text-2xl font-bold text-green-600">
+                                            <div className="text-2xl font-bold text-[#8B0620]">
                                                 {selectedResult.answers.filter(a => a.isCorrect).length}
                                             </div>
                                             <div className="text-sm text-muted-foreground">إجابات صحيحة</div>
@@ -420,7 +420,7 @@ const GradesPage = () => {
                                                     </div>
                                                     <div>
                                                         <span className="font-medium">الإجابة الصحيحة:</span>
-                                                        <p className="text-green-600">{answer.correctAnswer}</p>
+                                                        <p className="text-[#8B0620]">{answer.correctAnswer}</p>
                                                     </div>
                                                 </div>
                                                 <div className="mt-2 text-sm">

@@ -14,7 +14,7 @@ model User {
   id                      String    @id @default(uuid())
   fullName                String
   phoneNumber             String    @unique
-  parentPhoneNumber       String
+  email                   String
   hashedPassword          String?
   image                   String?
   role                    String    @default("USER")
@@ -43,6 +43,7 @@ model Course {
   chapters Chapter[]
   purchases Purchase[]
   quizzes Quiz[]
+  livestreams Livestream[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -213,4 +214,21 @@ model QuizAnswer {
 
     @@index([questionId])
     @@index([quizResultId])
+}
+
+model Livestream {
+    id String @id @default(uuid())
+    title String
+    description String? @db.Text
+    platform String // "ZOOM" or "GOOGLE_MEET"
+    meetingLink String @db.Text
+    scheduledStartTime DateTime
+    scheduledEndTime DateTime
+    isPublished Boolean @default(false)
+    courseId String
+    course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([courseId])
 }

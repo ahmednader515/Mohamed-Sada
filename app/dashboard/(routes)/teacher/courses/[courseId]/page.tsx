@@ -96,23 +96,23 @@ export default async function CourseIdPage({
                         {!isComplete && (
                             <div className="text-xs text-muted-foreground mt-2">
                                 <div className="grid grid-cols-2 gap-2">
-                                    <div className={`flex items-center gap-1 ${completionStatus.title ? 'text-green-600' : 'text-red-600'}`}>
+                                    <div className={`flex items-center gap-1 ${completionStatus.title ? 'text-[#8B0620]' : 'text-red-600'}`}>
                                         <span>{completionStatus.title ? '✓' : '✗'}</span>
                                         <span>العنوان</span>
                                     </div>
-                                    <div className={`flex items-center gap-1 ${completionStatus.description ? 'text-green-600' : 'text-red-600'}`}>
+                                    <div className={`flex items-center gap-1 ${completionStatus.description ? 'text-[#8B0620]' : 'text-red-600'}`}>
                                         <span>{completionStatus.description ? '✓' : '✗'}</span>
                                         <span>الوصف</span>
                                     </div>
-                                    <div className={`flex items-center gap-1 ${completionStatus.imageUrl ? 'text-green-600' : 'text-red-600'}`}>
+                                    <div className={`flex items-center gap-1 ${completionStatus.imageUrl ? 'text-[#8B0620]' : 'text-red-600'}`}>
                                         <span>{completionStatus.imageUrl ? '✓' : '✗'}</span>
                                         <span>الصورة</span>
                                     </div>
-                                    <div className={`flex items-center gap-1 ${completionStatus.price ? 'text-green-600' : 'text-red-600'}`}>
+                                    <div className={`flex items-center gap-1 ${completionStatus.price ? 'text-[#8B0620]' : 'text-red-600'}`}>
                                         <span>{completionStatus.price ? '✓' : '✗'}</span>
                                         <span>السعر</span>
                                     </div>
-                                    <div className={`flex items-center gap-1 ${completionStatus.publishedChapters ? 'text-green-600' : 'text-red-600'}`}>
+                                    <div className={`flex items-center gap-1 ${completionStatus.publishedChapters ? 'text-[#8B0620]' : 'text-red-600'}`}>
                                         <span>{completionStatus.publishedChapters ? '✓' : '✗'}</span>
                                         <span>فصل منشور</span>
                                     </div>

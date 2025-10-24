@@ -128,7 +128,7 @@ export default function BalancePage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="text-3xl font-bold text-[#27c08d]">
+          <div className="text-3xl font-bold text-[#8B0620]">
             {balance.toFixed(2)} جنيه
           </div>
         </CardContent>
@@ -160,7 +160,7 @@ export default function BalancePage() {
               <Button 
                 onClick={handleAddBalance}
                 disabled={isLoading}
-                className="bg-[#27c08d] hover:bg-[#27c08d]/90"
+                className="bg-[#8B0620] hover:bg-[#8B0620]/90"
               >
                 {isLoading ? "جاري الإضافة..." : "إضافة الرصيد"}
               </Button>
@@ -183,7 +183,7 @@ export default function BalancePage() {
         <CardContent>
           {isLoadingTransactions ? (
             <div className="text-center py-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#27c08d] mx-auto"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#8B0620] mx-auto"></div>
               <p className="mt-2 text-muted-foreground">جاري التحميل...</p>
             </div>
           ) : transactions.length === 0 ? (

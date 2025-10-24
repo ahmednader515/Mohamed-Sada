@@ -8,7 +8,6 @@ import Image from "next/image";
 import { Navbar } from "@/components/navbar";
 import { useEffect, useState } from "react";
 import ServicesCarousel from "@/components/services-carousel";
-import { ReservationSection } from "@/components/reservation-section";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
@@ -137,13 +136,13 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="h-full w-full bg-background overflow-x-hidden">
+    <div className="h-full w-full bg-background">
       <style dangerouslySetInnerHTML={{ __html: swiperStyles }} />
       
       {/* Fixed Header with Banner and Navbar */}
-      <div className="fixed top-0 w-full z-50 max-w-full">
+      <div className="fixed top-0 left-0 right-0 z-50">
         {/* Promotional Banner */}
-        <div className="bg-gradient-to-r from-[#3DBBEB] from-25% via-[#B5215E] via-50% to-[#ff002b] to-100% text-white py-3 md:py-4 text-center text-xs sm:text-sm md:text-base font-medium px-2 max-w-full overflow-x-hidden">
+        <div className="bg-gradient-to-r from-[#3DBBEB] from-25% via-[#B5215E] via-50% to-[#ff002b] to-100% text-white py-3 md:py-4 text-center text-xs sm:text-sm md:text-base font-medium px-2">
           <p className="font-bold">كورس التربية الخاصة مجاناً 100% ! استخدم كود الخصم : SADA100 وابدأ التعلم الآن</p>
         </div>
         
@@ -151,7 +150,7 @@ export default function HomePage() {
       </div>
       
       {/* Hero Section */}
-      <section id="hero-section" className="relative overflow-hidden max-w-full">
+      <section id="hero-section" className="relative overflow-hidden">
         <Swiper
           modules={[Pagination, Autoplay]}
           spaceBetween={0}
@@ -178,7 +177,7 @@ export default function HomePage() {
                   <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-indigo-200/20 rounded-full blur-lg"></div>
                 </div>
 
-                <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10 max-w-full">
+                <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10 max-w-[80%]">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-4 items-center max-w-7xl mx-auto w-full">
                     {/* Left side - Text content */}
                     <motion.div
@@ -339,8 +338,8 @@ export default function HomePage() {
       </section>
 
       {/* Courses Section */}
-      <section id="services-section" className="py-20 bg-muted/50 max-w-full overflow-x-hidden">
-        <div className="container mx-auto px-4 max-w-full">
+      <section id="services-section" className="py-20 bg-muted/50">
+        <div className="container mx-auto px-4 max-w-[80%]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -382,8 +381,8 @@ export default function HomePage() {
       </section>
 
       {/* About Dr. Mohamed Sada Section */}
-      <section className="py-20 max-w-full overflow-x-hidden">
-        <div className="container mx-auto px-4 max-w-full">
+      <section className="py-20">
+        <div className="container mx-auto px-4 max-w-[80%]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -460,8 +459,8 @@ export default function HomePage() {
       </section>
 
       {/* Certifications and Accreditations Section */}
-      <section className="py-20 bg-muted/50 max-w-full overflow-x-hidden">
-        <div className="container mx-auto px-4 max-w-full">
+      <section className="py-20 bg-muted/50">
+        <div className="container mx-auto px-4 max-w-[80%]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -523,8 +522,8 @@ export default function HomePage() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-20 max-w-full overflow-x-hidden">
-        <div className="container mx-auto px-4 max-w-full">
+      <section className="py-20">
+        <div className="container mx-auto px-4 max-w-[80%]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -582,12 +581,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Reservation Section */}
-      <ReservationSection />
-
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-[#8B0620] to-[#8B0620] max-w-full overflow-x-hidden">
-        <div className="container mx-auto px-4 max-w-full">
+      <section className="py-20 bg-gradient-to-r from-[#8B0620] to-[#8B0620]">
+        <div className="container mx-auto px-4 max-w-[80%]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

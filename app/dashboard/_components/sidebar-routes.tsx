@@ -1,6 +1,6 @@
 "use client";
 
-import { BarChart, Compass, Layout, List, Wallet, Shield, Users, Eye, TrendingUp, BookOpen, FileText, Award, PlusSquare, Key } from "lucide-react";
+import { BarChart, Compass, Layout, List, Wallet, Shield, Users, Eye, TrendingUp, BookOpen, FileText, Award, PlusSquare, Key, Video } from "lucide-react";
 import { SidebarItem } from "./sidebar-item";
 import { usePathname } from "next/navigation";
 
@@ -39,34 +39,14 @@ const teacherRoutes = [
         href: "/dashboard/teacher/grades",
     },
     {
+        icon: Video,
+        label: "البثوث المباشرة",
+        href: "/dashboard/teacher/livestreams",
+    },
+    {
         icon: BarChart,
         label: "الاحصائيات",
         href: "/dashboard/teacher/analytics",
-    },
-    {
-        icon: Users,
-        label: "إدارة الطلاب",
-        href: "/dashboard/teacher/users",
-    },
-    {
-        icon: Wallet,
-        label: "إدارة الأرصدة",
-        href: "/dashboard/teacher/balances",
-    },
-    {
-        icon: BookOpen,
-        label: "اضافة و حذف الكورسات",
-        href: "/dashboard/teacher/add-courses",
-    },
-    {
-        icon: Key,
-        label: "كلمات المرور",
-        href: "/dashboard/teacher/passwords",
-    },
-    {
-        icon: Shield,
-        label: "إنشاء حساب طالب",
-        href: "/dashboard/teacher/create-account",
     },
 ];
 
@@ -85,6 +65,16 @@ const adminRoutes = [
         icon: FileText,
         label: "الاختبارات",
         href: "/dashboard/admin/quizzes",
+    },
+    {
+        icon: Award,
+        label: "الدرجات",
+        href: "/dashboard/admin/grades",
+    },
+    {
+        icon: Video,
+        label: "البثوث المباشرة",
+        href: "/dashboard/admin/livestreams",
     },
     {
         icon: Shield,

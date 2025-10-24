@@ -30,12 +30,12 @@ export const SearchInput = () => {
                     name="title"
                     placeholder="ابحث عن كورسات تعليمية..."
                     defaultValue={searchParams.get("title") || ""}
-                    className="h-12 pr-10 pl-4 text-base border-2 focus:border-[#27c08d] transition-colors"
+                    className="h-12 pr-10 pl-4 text-base border-2 focus:border-[#8B0620] transition-colors"
                 />
             </div>
             <Button 
                 type="submit" 
-                className="h-12 px-6 bg-[#27c08d] hover:bg-[#27c08d]/90 text-white font-semibold transition-all duration-200 hover:scale-105"
+                className="h-12 px-6 bg-[#8B0620] hover:bg-[#8B0620]/90 text-white font-semibold transition-all duration-200 hover:scale-105"
             >
                 <Search className="h-4 w-4 ml-2" />
                 بحث

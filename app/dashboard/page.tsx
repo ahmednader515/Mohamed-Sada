@@ -5,7 +5,7 @@ import { authOptions } from "@/lib/auth";
 import { getDashboardUrlByRole } from "@/lib/utils";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Play, Clock, Trophy, Wallet, TrendingUp, BookOpen as BookOpenIcon } from "lucide-react";
+import { BookOpen, Play, Clock, Trophy, Wallet, TrendingUp, BookOpen as BookOpenIcon, Video, Calendar } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Course, Purchase, Chapter } from "@prisma/client";
@@ -245,6 +245,37 @@ const CoursesPage = async () => {
     })
   );
 
+  // Get upcoming livestreams for student's purchased courses
+  const now = new Date();
+  const upcomingLivestreams = await db.livestream.findMany({
+    where: {
+      course: {
+        purchases: {
+          some: {
+            userId: session.user.id,
+            status: "ACTIVE"
+          }
+        }
+      },
+      isPublished: true,
+      scheduledEndTime: {
+        gt: now // Only show livestreams that haven't ended
+      }
+    },
+    include: {
+      course: {
+        select: {
+          title: true,
+          imageUrl: true
+        }
+      }
+    },
+    orderBy: {
+      scheduledStartTime: "asc"
+    },
+    take: 5 // Limit to 5 upcoming livestreams
+  });
+
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
@@ -256,24 +287,24 @@ const CoursesPage = async () => {
       {/* Stats and Balance Row */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         {/* Balance Card */}
-        <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-xl p-6 text-white">
+        <div className="bg-gradient-to-r from-[#8B0620] to-[#6B0418] rounded-xl p-6 text-white">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-green-100 text-sm">الرصيد الحالي</p>
+              <p className="text-red-100 text-sm">الرصيد الحالي</p>
               <p className="text-2xl font-bold">{user?.balance?.toFixed(2) || "0.00"} جنيه</p>
             </div>
-            <Wallet className="h-8 w-8 text-green-200" />
+            <Wallet className="h-8 w-8 text-red-200" />
           </div>
         </div>
 
         {/* Total Courses */}
-        <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-xl p-6 text-white">
+        <div className="bg-gradient-to-r from-[#8B0620] to-[#6B0418] rounded-xl p-6 text-white">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-green-100 text-sm">الكورسات المشتراة</p>
+              <p className="text-red-100 text-sm">الكورسات المشتراة</p>
               <p className="text-2xl font-bold">{studentStats.totalCourses}</p>
             </div>
-            <BookOpenIcon className="h-8 w-8 text-green-200" />
+            <BookOpenIcon className="h-8 w-8 text-red-200" />
           </div>
         </div>
 
@@ -299,6 +330,87 @@ const CoursesPage = async () => {
           </div>
         </div>
       </div>
+
+      {/* Upcoming Livestreams Alert */}
+      {upcomingLivestreams.length > 0 && (
+        <div className="mb-8">
+          <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+            <Video className="h-5 w-5 text-red-600" />
+            البثوث المباشرة القادمة
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {upcomingLivestreams.map((livestream) => {
+              const now = new Date();
+              const start = new Date(livestream.scheduledStartTime);
+              const end = new Date(livestream.scheduledEndTime);
+              const isLive = now >= start && now <= end;
+              const isUpcoming = now < start;
+
+              return (
+                <div 
+                  key={livestream.id} 
+                  className={`bg-card rounded-xl overflow-hidden border shadow-lg ${
+                    isLive ? 'border-green-500 border-2' : 'border-yellow-500'
+                  }`}
+                >
+                  <div className="p-6">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex-1">
+                        <h3 className="font-bold text-lg mb-1">{livestream.title}</h3>
+                        <p className="text-sm text-muted-foreground">{livestream.course.title}</p>
+                      </div>
+                      <div className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                        isLive 
+                          ? 'bg-red-100 text-[#8B0620] animate-pulse' 
+                          : 'bg-yellow-100 text-yellow-800'
+                      }`}>
+                        {isLive ? '🔴 جارٍ الآن' : '⏰ قادم'}
+                      </div>
+                    </div>
+
+                    {livestream.description && (
+                      <p className="text-sm text-muted-foreground mb-4">
+                        {livestream.description}
+                      </p>
+                    )}
+
+                    <div className="space-y-2 mb-4">
+                      <div className="flex items-center gap-2 text-sm">
+                        <Calendar className="h-4 w-4 text-muted-foreground" />
+                        <span className="text-muted-foreground">
+                          البدء: {new Date(livestream.scheduledStartTime).toLocaleString('ar-EG', {
+                            dateStyle: 'medium',
+                            timeStyle: 'short'
+                          })}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm">
+                        <Clock className="h-4 w-4 text-muted-foreground" />
+                        <span className="text-muted-foreground">
+                          الانتهاء: {new Date(livestream.scheduledEndTime).toLocaleString('ar-EG', {
+                            dateStyle: 'medium',
+                            timeStyle: 'short'
+                          })}
+                        </span>
+                      </div>
+                    </div>
+
+                    <Button
+                      className="w-full bg-[#8B0620] hover:bg-[#8B0620]/90 text-white"
+                      asChild
+                    >
+                      <a href={livestream.meetingLink} target="_blank" rel="noopener noreferrer">
+                        <Video className="h-4 w-4 mr-2" />
+                        {isLive ? 'انضم الآن' : 'فتح رابط الاجتماع'} - {livestream.platform === 'ZOOM' ? 'Zoom' : 'Google Meet'}
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Last Watched Chapter - Big Square */}
       {lastWatchedChapter && (
@@ -343,7 +455,7 @@ const CoursesPage = async () => {
                   </div>
                   
                   <Button 
-                    className="w-full bg-[#27c08d] hover:bg-[#27c08d]/90 text-white" 
+                    className="w-full bg-[#8B0620] hover:bg-[#8B0620]/90 text-white" 
                     size="lg"
                     asChild
                   >
@@ -381,8 +493,8 @@ const CoursesPage = async () => {
 
           <div className="bg-card rounded-xl p-6 border">
             <div className="flex items-center gap-3 mb-4">
-              <div className="bg-green-100 p-3 rounded-full">
-                <Trophy className="h-6 w-6 text-green-600" />
+              <div className="bg-red-100 p-3 rounded-full">
+                <Trophy className="h-6 w-6 text-[#8B0620]" />
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">الاختبارات المكتملة</p>
@@ -447,12 +559,12 @@ const CoursesPage = async () => {
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-muted-foreground font-medium">التقدم</span>
-                      <span className="font-bold text-[#27c08d]">{Math.round(course.progress)}%</span>
+                      <span className="font-bold text-[#8B0620]">{Math.round(course.progress)}%</span>
                     </div>
                     <div className="relative">
                       <div className="w-full bg-gray-200 rounded-full h-3">
                         <div 
-                          className="bg-gradient-to-r from-[#27c08d] to-[#27c08d]/80 h-3 rounded-full transition-all duration-300"
+                          className="bg-gradient-to-r from-[#8B0620] to-[#8B0620]/80 h-3 rounded-full transition-all duration-300"
                           style={{ width: `${course.progress}%` }}
                         ></div>
                       </div>
@@ -460,7 +572,7 @@ const CoursesPage = async () => {
                   </div>
                   
                   <Button 
-                    className="w-full bg-[#27c08d] hover:bg-[#27c08d]/90 text-white font-semibold py-3 text-base transition-all duration-200 hover:scale-105" 
+                    className="w-full bg-[#8B0620] hover:bg-[#8B0620]/90 text-white font-semibold py-3 text-base transition-all duration-200 hover:scale-105" 
                     variant="default"
                     asChild
                   >
@@ -479,7 +591,7 @@ const CoursesPage = async () => {
               <BookOpen className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
               <h3 className="text-lg font-semibold mb-2">لم تقم بشراء أي كورسات بعد</h3>
               <p className="text-muted-foreground mb-6">ابدأ رحلة التعلم بشراء أول كورس لك</p>
-              <Button asChild className="bg-[#27c08d] hover:bg-[#27c08d]/90 text-white font-semibold">
+              <Button asChild className="bg-[#8B0620] hover:bg-[#8B0620]/90 text-white font-semibold">
                 <Link href="/dashboard/search">
                   استكشف الكورسات المتاحة
                 </Link>

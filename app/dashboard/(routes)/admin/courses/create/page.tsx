@@ -2,24 +2,21 @@ import { db } from "@/lib/db";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
-const AdminCreateCoursePage = async () => {
-  const { userId } = await auth();
+const CreatePage = async () => {
+    const { userId } = await auth();
 
-  if (!userId) {
-    return redirect("/");
-  }
+    if (!userId) {
+        return redirect("/");
+    }
 
-  const course = await db.course.create({
-    data: {
-      userId,
-      title: "كورس غير معرفة",
-    },
-  });
+    const course = await db.course.create({
+        data: {
+            userId,
+            title: "كورس غير معرفة",
+        }
+    });
 
-  // Reuse the teacher editor UI for course setup
-  return redirect(`/dashboard/teacher/courses/${course.id}`);
+    return redirect(`/dashboard/admin/courses/${course.id}`);
 };
 
-export default AdminCreateCoursePage;
-
-
+export default CreatePage;

@@ -94,9 +94,9 @@ const QuizResultDetailPage = ({ params }: { params: Promise<{ resultId: string }
     };
 
     const getGradeColor = (percentage: number) => {
-        if (percentage >= 90) return "text-green-600";
-        if (percentage >= 80) return "text-green-500";
-        if (percentage >= 70) return "text-green-400";
+        if (percentage >= 90) return "text-[#8B0620]";
+        if (percentage >= 80) return "text-[#A52A2A]";
+        if (percentage >= 70) return "text-[#B22222]";
         if (percentage >= 60) return "text-orange-600";
         return "text-red-600";
     };
@@ -121,10 +121,10 @@ const QuizResultDetailPage = ({ params }: { params: Promise<{ resultId: string }
                                 className={`p-2 rounded border ${
                                     option === answer.answer
                                         ? answer.isCorrect
-                                            ? "bg-green-50 border-green-200"
+                                            ? "bg-red-50 border-[#8B0620]"
                                             : "bg-red-50 border-red-200"
                                         : option === answer.question.correctAnswer
-                                        ? "bg-green-50 border-green-200"
+                                        ? "bg-red-50 border-[#8B0620]"
                                         : "bg-gray-50"
                                 }`}
                             >
@@ -270,7 +270,7 @@ const QuizResultDetailPage = ({ params }: { params: Promise<{ resultId: string }
                                         <div className="flex items-center space-x-2">
                                             <Badge variant="outline">{answer.question.points} درجة</Badge>
                                             {answer.isCorrect ? (
-                                                <CheckCircle className="h-5 w-5 text-green-600" />
+                                                <CheckCircle className="h-5 w-5 text-[#8B0620]" />
                                             ) : (
                                                 <XCircle className="h-5 w-5 text-red-600" />
                                             )}
@@ -298,7 +298,7 @@ const QuizResultDetailPage = ({ params }: { params: Promise<{ resultId: string }
                                             <div className="space-y-1">
                                                 <div className={`p-2 rounded border ${
                                                     answer.question.correctAnswer === "true"
-                                                        ? "bg-green-50 border-green-200"
+                                                        ? "bg-red-50 border-[#8B0620]"
                                                         : "bg-gray-50"
                                                 }`}>
                                                     <span className="text-sm">صح</span>
@@ -308,7 +308,7 @@ const QuizResultDetailPage = ({ params }: { params: Promise<{ resultId: string }
                                                 </div>
                                                 <div className={`p-2 rounded border ${
                                                     answer.question.correctAnswer === "false"
-                                                        ? "bg-green-50 border-green-200"
+                                                        ? "bg-red-50 border-[#8B0620]"
                                                         : "bg-gray-50"
                                                 }`}>
                                                     <span className="text-sm">خطأ</span>
@@ -336,7 +336,7 @@ const QuizResultDetailPage = ({ params }: { params: Promise<{ resultId: string }
                                                 <span className="text-sm font-medium">إجابة الطالب: </span>
                                                 <p className={`text-sm p-2 rounded border ${
                                                     answer.isCorrect 
-                                                        ? "bg-green-50 border-green-200" 
+                                                        ? "bg-red-50 border-[#8B0620]" 
                                                         : "bg-red-50 border-red-200"
                                                 }`}>
                                                     {answer.answer}
@@ -348,7 +348,7 @@ const QuizResultDetailPage = ({ params }: { params: Promise<{ resultId: string }
                                     <div className="mt-3 pt-3 border-t">
                                         <div className="flex items-center justify-between">
                                             <span className="text-sm font-medium">الدرجات المكتسبة:</span>
-                                            <span className={`text-sm font-medium ${answer.isCorrect ? 'text-green-600' : 'text-red-600'}`}>
+                                            <span className={`text-sm font-medium ${answer.isCorrect ? 'text-[#8B0620]' : 'text-red-600'}`}>
                                                 {answer.points} / {answer.question.points}
                                             </span>
                                         </div>

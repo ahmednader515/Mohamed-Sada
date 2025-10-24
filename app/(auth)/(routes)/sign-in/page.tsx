@@ -83,8 +83,8 @@ export default function SignInPage() {
       </div>
       
       {/* Right Side - Image */}
-      <div className="hidden lg:flex flex-1 bg-gradient-to-br from-[#10B981]/10 to-[#10B981]/5 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[#10B981]/5"></div>
+      <div className="hidden lg:flex flex-1 bg-gradient-to-br from-[#8B0620]/10 to-[#8B0620]/5 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[#8B0620]/5"></div>
         <div className="relative z-10 flex items-center justify-center w-full">
           <div className="text-center space-y-6 p-8">
             <div className="relative w-64 h-64 mx-auto">
@@ -92,12 +92,12 @@ export default function SignInPage() {
                 src="/logo.png"
                 alt="Teacher"
                 fill
-                className="object-cover rounded-full border-4 border-[#10B981]/20 shadow-2xl"
+                className="object-cover rounded-full border-4 border-[#8B0620]/20 shadow-2xl"
                 unoptimized
               />
             </div>
             <div className="space-y-4">
-              <h3 className="text-2xl font-bold text-[#10B981]">
+              <h3 className="text-2xl font-bold text-[#8B0620]">
                 مرحباً بك مرة أخرى
               </h3>
               <p className="text-lg text-muted-foreground max-w-md">
@@ -169,7 +169,7 @@ export default function SignInPage() {
               type="submit"
               loading={isLoading}
               loadingText="جاري تسجيل الدخول..."
-              className="w-full h-10 bg-[#27c08d] hover:bg-[#27c08d]/90 text-white"
+              className="w-full h-10 bg-[#8B0620] hover:bg-[#8B0620]/90 text-white"
             >
               تسجيل الدخول
             </LoadingButton>

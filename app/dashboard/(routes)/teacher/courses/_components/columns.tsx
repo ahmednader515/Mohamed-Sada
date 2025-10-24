@@ -24,11 +24,15 @@ export const columns: ColumnDef<Course>[] = [
                 <Button
                     variant="ghost"
                     onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                    className="text-right w-full justify-end"
                 >
                     العنوان
                     <ArrowUpDown className="ml-2 h-4 w-4" />
                 </Button>
             );
+        },
+        cell: ({ row }) => {
+            return <div className="text-right">{row.getValue("title")}</div>;
         },
     },
     {
@@ -38,6 +42,7 @@ export const columns: ColumnDef<Course>[] = [
                 <Button
                     variant="ghost"
                     onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                    className="text-right w-full justify-end"
                 >
                     السعر
                     <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -46,7 +51,7 @@ export const columns: ColumnDef<Course>[] = [
         },
         cell: ({ row }) => {
             const price = parseFloat(row.getValue("price"));
-            return <div>{formatPrice(price)}</div>;
+            return <div className="text-right">{formatPrice(price)}</div>;
         },
     },
     {
@@ -56,6 +61,7 @@ export const columns: ColumnDef<Course>[] = [
                 <Button
                     variant="ghost"
                     onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                    className="text-right w-full justify-end"
                 >
                     الحالة
                     <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -65,9 +71,11 @@ export const columns: ColumnDef<Course>[] = [
         cell: ({ row }) => {
             const isPublished = row.getValue("isPublished") || false;
             return (
-                <Badge variant={isPublished ? "default" : "secondary"}>
-                    {isPublished ? "منشور" : "مسودة"}
-                </Badge>
+                <div className="text-right">
+                    <Badge variant={isPublished ? "default" : "secondary"}>
+                        {isPublished ? "منشور" : "مسودة"}
+                    </Badge>
+                </div>
             );
         },
     },
@@ -78,6 +86,7 @@ export const columns: ColumnDef<Course>[] = [
                 <Button
                     variant="ghost"
                     onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                    className="text-right w-full justify-end"
                 >
                     انشئ في
                     <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -86,7 +95,7 @@ export const columns: ColumnDef<Course>[] = [
         },
         cell: ({ row }) => {
             const date = new Date(row.getValue("createdAt"));
-            return <div>{format(date, "dd/MM/yyyy", { locale: ar })}</div>;
+            return <div className="text-right">{format(date, "dd/MM/yyyy", { locale: ar })}</div>;
         },
     }
 ]; 

@@ -113,7 +113,7 @@ export function CoursesTable<TData extends { id: string }, TValue>({
                             <TableRow key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => {
                                     return (
-                                        <TableHead key={header.id}>
+                                        <TableHead key={header.id} className="text-right">
                                             {header.isPlaceholder
                                                 ? null
                                                 : flexRender(
@@ -123,6 +123,7 @@ export function CoursesTable<TData extends { id: string }, TValue>({
                                         </TableHead>
                                     );
                                 })}
+                                {!hideActions && <TableHead className="text-right">الإجراءات</TableHead>}
                             </TableRow>
                         ))}
                     </TableHeader>
@@ -142,8 +143,8 @@ export function CoursesTable<TData extends { id: string }, TValue>({
                                         </TableCell>
                                     ))}
                                     {!hideActions && (
-                                        <TableCell>
-                                            <div className="flex items-center gap-2">
+                                        <TableCell className="text-right">
+                                            <div className="flex items-center gap-2 justify-end">
                                                 <Link href={`/dashboard/teacher/courses/${row.original.id}`}>
                                                     <Button variant="ghost" size="icon">
                                                         <Pencil className="h-4 w-4" />
@@ -164,7 +165,10 @@ export function CoursesTable<TData extends { id: string }, TValue>({
                                                         </AlertDialogHeader>
                                                         <AlertDialogFooter>
                                                             <AlertDialogCancel>إلغاء</AlertDialogCancel>
-                                                            <AlertDialogAction onClick={() => onDelete(row.original.id)}>
+                                                            <AlertDialogAction 
+                                                                onClick={() => onDelete(row.original.id)}
+                                                                className="bg-[#8B0620] hover:bg-[#8B0620]/90"
+                                                            >
                                                                 حذف
                                                             </AlertDialogAction>
                                                         </AlertDialogFooter>

@@ -108,7 +108,10 @@ const QuizzesPage = () => {
                 <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
                     إدارة الاختبارات
                 </h1>
-                <Button onClick={() => router.push("/dashboard/teacher/quizzes/create")}>
+                <Button 
+                    onClick={() => router.push("/dashboard/teacher/quizzes/create")}
+                    className="bg-[#8B0620] hover:bg-[#8B0620]/90"
+                >
                     <Plus className="h-4 w-4 mr-2" />
                     إنشاء اختبار جديد
                 </Button>

@@ -19,7 +19,7 @@ export default function SignUpPage() {
   const [formData, setFormData] = useState({
     fullName: "",
     phoneNumber: "",
-    parentPhoneNumber: "",
+    email: "",
     password: "",
     confirmPassword: "",
   });
@@ -64,10 +64,10 @@ export default function SignUpPage() {
         const errorMessage = axiosError.response.data as string;
         if (errorMessage.includes("Phone number already exists")) {
           toast.error("رقم الهاتف مسجل مسبقاً");
-        } else if (errorMessage.includes("Parent phone number already exists")) {
-          toast.error("رقم هاتف الوالد مسجل مسبقاً");
-        } else if (errorMessage.includes("Phone number cannot be the same as parent phone number")) {
-          toast.error("رقم الهاتف لا يمكن أن يكون نفس رقم هاتف الوالد");
+        } else if (errorMessage.includes("Email already exists")) {
+          toast.error("البريد الإلكتروني مسجل مسبقاً");
+        } else if (errorMessage.includes("Invalid email format")) {
+          toast.error("صيغة البريد الإلكتروني غير صحيحة");
         } else if (errorMessage.includes("Passwords do not match")) {
           toast.error("كلمات المرور غير متطابقة");
         } else {
@@ -92,8 +92,8 @@ export default function SignUpPage() {
       </div>
       
       {/* Right Side - Image */}
-      <div className="hidden lg:flex flex-1 bg-gradient-to-br from-[#27c08d]/10 to-[#27c08d]/5 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[#27c08d]/5"></div>
+      <div className="hidden lg:flex flex-1 bg-gradient-to-br from-[#8B0620]/10 to-[#8B0620]/5 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[#8B0620]/5"></div>
         <div className="relative z-10 flex items-center justify-center w-full">
           <div className="text-center space-y-6 p-8">
             <div className="relative w-64 h-64 mx-auto">
@@ -101,12 +101,12 @@ export default function SignUpPage() {
                 src="/logo.png"
                 alt="Teacher"
                 fill
-                className="object-cover rounded-full border-4 border-[#27c08d]/20 shadow-2xl"
+                className="object-cover rounded-full border-4 border-[#8B0620]/20 shadow-2xl"
                 unoptimized
               />
             </div>
             <div className="space-y-4">
-              <h3 className="text-2xl font-bold text-[#27c08d]">
+              <h3 className="text-2xl font-bold text-[#8B0620]">
                 مرحباً بك في منصة الدكتور محمد سادة التعليمية
               </h3>
               <p className="text-lg text-muted-foreground max-w-md">
@@ -159,18 +159,18 @@ export default function SignUpPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="parentPhoneNumber">رقم هاتف الوالد</Label>
+              <Label htmlFor="email">البريد الإلكتروني</Label>
               <Input
-                id="parentPhoneNumber"
-                name="parentPhoneNumber"
-                type="tel"
-                autoComplete="tel"
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
                 required
                 disabled={isLoading}
                 className="h-10"
-                value={formData.parentPhoneNumber}
+                value={formData.email}
                 onChange={handleInputChange}
-                placeholder="+20XXXXXXXXXX"
+                placeholder="email@example.com"
               />
             </div>
             <div className="space-y-2">
@@ -246,7 +246,7 @@ export default function SignUpPage() {
 
             <Button
               type="submit"
-              className="w-full h-10 bg-[#27c08d] hover:bg-[#27c08d]/90 text-white"
+              className="w-full h-10 bg-[#8B0620] hover:bg-[#8B0620]/90 text-white"
               disabled={isLoading || !passwordChecks.isValid}
             >
               {isLoading ? "جاري إنشاء الحساب..." : "إنشاء حساب"}

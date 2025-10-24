@@ -181,7 +181,7 @@ export default async function SearchPage({
                                 </div>
                                 
                                 <Button 
-                                    className="w-full bg-[#27c08d] hover:bg-[#27c08d]/90 text-white font-semibold py-3 text-base transition-all duration-200 hover:scale-105" 
+                                    className="w-full bg-[#8B0620] hover:bg-[#8B0620]/90 text-white font-semibold py-3 text-base transition-all duration-200 hover:scale-105" 
                                     variant="default"
                                     asChild
                                 >
@@ -209,7 +209,7 @@ export default async function SearchPage({
                                 }
                             </p>
                             {title && (
-                                <Button asChild className="bg-[#27c08d] hover:bg-[#27c08d]/90 text-white font-semibold">
+                                <Button asChild className="bg-[#8B0620] hover:bg-[#8B0620]/90 text-white font-semibold">
                                     <Link href="/dashboard/search">
                                         عرض جميع الكورسات
                                     </Link>

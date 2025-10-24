@@ -177,7 +177,7 @@ export default function QuizResultPage({
     if (loading) {
         return (
             <div className="min-h-screen flex items-center justify-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#27c08d]"></div>
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#8B0620]"></div>
             </div>
         );
     }
@@ -310,14 +310,14 @@ export default function QuizResultPage({
                         {canRetakeQuiz ? (
                             <Button
                                 onClick={handleTryAgain}
-                                className="bg-[#27c08d] hover:bg-[#27c08d]/90"
+                                className="bg-[#8B0620] hover:bg-[#8B0620]/90"
                             >
                                 إعادة الاختبار
                             </Button>
                         ) : (
                             <Button
                                 onClick={handleNextChapter}
-                                className="bg-[#27c08d] hover:bg-[#27c08d]/90"
+                                className="bg-[#8B0620] hover:bg-[#8B0620]/90"
                             >
                                 {willRedirectToDashboard ? "لوحة التحكم" : "الفصل التالي"}
                             </Button>

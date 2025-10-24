@@ -38,7 +38,7 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
           >
             <ToastProvider />
             {children}
-            <Toaster />
+            <Toaster position="bottom-right" dir="rtl" />
           </ThemeProvider>
         </RTLProvider>
       </SessionHandler>

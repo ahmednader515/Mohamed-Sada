@@ -53,11 +53,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning lang="ar" dir="rtl" className={`${geistSans.variable} ${geistMono.variable} ${cairo.variable}`}>
-      <body suppressHydrationWarning className="font-cairo overflow-x-hidden">
+    <html suppressHydrationWarning lang="ar" className={`${geistSans.variable} ${geistMono.variable} ${cairo.variable}`}>
+      <body suppressHydrationWarning className="font-cairo">
         <Providers>
-          <div className="min-h-screen flex flex-col overflow-x-hidden">
-            <main className="flex-1 overflow-x-hidden">
+          <div className="min-h-screen flex flex-col">
+            <main className="flex-1">
               {children}
             </main>
             <Footer />

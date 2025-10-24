@@ -67,8 +67,8 @@ export const ReservationSection = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-[#27c08d]/5 to-[#1e3a8a]/5">
-      <div className="container mx-auto px-4">
+    <section className="py-20 bg-gradient-to-br from-[#8B0620]/5 to-[#1e3a8a]/5">
+      <div className="container mx-auto px-4 max-w-[80%]">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
