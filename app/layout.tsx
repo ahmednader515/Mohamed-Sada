@@ -40,11 +40,10 @@ const cairo = localFont({
   ],
   variable: '--font-cairo',
   display: 'swap',
-  preload: true,
 });
 
 export const metadata: Metadata = {
-  title: "منصة الشهاب",
+  title: "منصة الدكتور محمد سادة",
   description: "منصة تعليمية متكاملة",
 };
 

@@ -107,7 +107,7 @@ export default function SignUpPage() {
             </div>
             <div className="space-y-4">
               <h3 className="text-2xl font-bold text-[#27c08d]">
-                مرحباً بك في منصة الشهاب التعليمية
+                مرحباً بك في منصة الدكتور محمد سادة التعليمية
               </h3>
               <p className="text-lg text-muted-foreground max-w-md">
                 انضم إلينا اليوم وابدأ رحلة التعلم مع أفضل المدرسين
